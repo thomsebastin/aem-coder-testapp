@@ -10,74 +10,148 @@
  * governing permissions and limitations under the License.
  */
 
+/* ==========================================
+   AT&T Business Design System
+   Extracted from: https://www.business.att.com/
+   ========================================== */
+
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* ---- Colors ---- */
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* Primary brand */
+  --att-blue-deep: #00388f;
+  --att-blue: #0568ae;
+  --att-blue-hover: #0057b8;
+  --att-blue-link: #0074b3;
+  --att-blue-globe: #009fdb;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* Backgrounds */
+  --background-color: #fff;
+  --light-color: #f2fafd;
+  --light-gray-color: #f3f4f6;
+  --dark-color: #25303a;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* Text */
+  --text-color: #1d2329;
+  --text-color-secondary: #454b52;
+  --text-color-body: #191919;
+  --text-color-muted: #878c94;
 
-  /* nav height */
+  /* Borders */
+  --border-color: #878c94;
+  --border-color-dark: #686e74;
+
+  /* Semantic */
+  --link-color: #0074b3;
+  --link-hover-color: #0057b8;
+  --error-color: #f00;
+
+  /* ---- Fonts ---- */
+  --body-font-family: 'ATT Aleck Sans', att-aleck-sans-fallback, arial, sans-serif;
+  --heading-font-family: 'ATT Aleck Sans', att-aleck-sans-fallback, arial, sans-serif;
+
+  /* Body sizes */
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+
+  /* Heading sizes (mobile-first) */
+  --heading-font-size-xxl: 38px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 26px;
+  --heading-font-size-m: 22px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+
+  /* ---- Typography ---- */
+  --heading-letter-spacing: -0.03em;
+  --heading-line-height: 1.15;
+  --body-line-height: 1.5;
+
+  /* ---- Spacing ---- */
+  --spacing-xs: 4px;
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 64px;
+
+  /* ---- Buttons ---- */
+  --button-border-radius: 28px;
+  --button-padding: 0 32px;
+  --button-font-size: 14px;
+  --button-min-width: 100px;
+  --button-height: 40px;
+  --button-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  /* Primary button */
+  --button-primary-bg: var(--att-blue-deep);
+  --button-primary-color: #fff;
+  --button-primary-bg-hover: var(--att-blue-hover);
+  --button-primary-color-hover: #fff;
+  --button-primary-box-shadow: rgb(255 255 255 / 15%) 0 1px 0 0 inset, rgb(0 0 0 / 7.5%) 0 1px 1px 0;
+
+  /* Secondary button */
+  --button-secondary-bg: transparent;
+  --button-secondary-color: var(--text-color);
+  --button-secondary-border: 2px solid var(--text-color);
+  --button-secondary-bg-hover: var(--att-blue-hover);
+  --button-secondary-color-hover: #fff;
+  --button-secondary-border-hover: 2px solid var(--att-blue-hover);
+
+  /* ---- Layout ---- */
+  --max-content-width: 1200px;
   --nav-height: 64px;
+
+  /* ---- Form inputs ---- */
+  --input-padding: 12px 16px;
+  --input-border: 1px solid var(--border-color);
+  --input-border-radius: 8px;
+  --input-font-size: 14px;
+
+  /* ---- Focus ---- */
+  --focus-outline: 2px solid var(--att-blue);
+  --focus-outline-offset: 2px;
+
+  /* ---- Transitions ---- */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
 }
 
-/* fallback fonts */
+/* Fallback font */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
+  font-family: att-aleck-sans-fallback;
+  size-adjust: 100%;
   src: local('Arial');
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
+/* Desktop overrides */
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 38px;
+    --heading-font-size-l: 30px;
     --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
+
+/* ==========================================
+   Base Styles
+   ========================================== */
 
 body {
   display: none;
   margin: 0;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--text-color-secondary);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: var(--body-line-height);
 }
 
 body.appear {
@@ -98,6 +172,10 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* ==========================================
+   Typography
+   ========================================== */
+
 h1,
 h2,
 h3,
@@ -107,8 +185,10 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--heading-letter-spacing);
+  color: var(--text-color);
   scroll-margin: 40px;
 }
 
@@ -137,10 +217,14 @@ pre {
 pre {
   padding: 16px;
   border-radius: 8px;
-  background-color: var(--light-color);
+  background-color: var(--light-gray-color);
   overflow-x: auto;
   white-space: pre;
 }
+
+/* ==========================================
+   Layout
+   ========================================== */
 
 main > div {
   margin: 40px 16px;
@@ -153,11 +237,15 @@ button {
   font: inherit;
 }
 
-/* links */
+/* ==========================================
+   Links
+   ========================================== */
+
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
   overflow-wrap: break-word;
+  transition: color var(--transition-base);
 }
 
 a:hover {
@@ -165,7 +253,15 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+a:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ==========================================
+   Buttons
+   ========================================== */
+
 a.button:any-link,
 button {
   box-sizing: border-box;
@@ -173,42 +269,69 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
-  line-height: 1.25;
+  font-weight: 700;
+  font-size: var(--button-font-size);
+  line-height: var(--button-height);
+  min-width: var(--button-min-width);
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-color);
+  box-shadow: var(--button-primary-box-shadow);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: var(--button-transition);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--button-primary-bg-hover);
   cursor: pointer;
+}
+
+a.button:focus-visible,
+button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--light-color);
+  background-color: var(--light-gray-color);
+  color: var(--text-color-muted);
   cursor: unset;
+  box-shadow: none;
 }
 
+/* Secondary button */
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  background-color: var(--button-secondary-bg);
+  border: var(--button-secondary-border);
+  color: var(--button-secondary-color);
+  box-shadow: none;
 }
+
+a.button.secondary:hover,
+a.button.secondary:focus,
+button.secondary:hover,
+button.secondary:focus {
+  background-color: var(--button-secondary-bg-hover);
+  border-color: var(--button-secondary-bg-hover);
+  color: var(--button-secondary-color-hover);
+}
+
+/* ==========================================
+   Images & Icons
+   ========================================== */
 
 main img {
   max-width: 100%;
@@ -227,13 +350,50 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* ==========================================
+   Form Inputs
+   ========================================== */
+
+main input[type="text"],
+main input[type="email"],
+main input[type="tel"],
+main textarea,
+main select {
+  padding: var(--input-padding);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  font-family: var(--body-font-family);
+  font-size: var(--input-font-size);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+main input:focus,
+main textarea:focus,
+main select:focus {
+  border-color: var(--att-blue);
+  box-shadow: 0 0 0 2px rgb(5 104 174 / 20%);
+  outline: none;
+}
+
+main input::placeholder,
+main textarea::placeholder {
+  color: var(--text-color-muted);
+}
+
+/* ==========================================
+   Sections
+   ========================================== */
+
 main > .section {
   margin: 40px 0;
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--max-content-width);
   margin: auto;
   padding: 0 24px;
 }
@@ -248,10 +408,73 @@ main > .section:first-of-type {
   }
 }
 
-/* section metadata */
+/* Section variants */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+main .section.light-gray {
+  background-color: var(--light-gray-color);
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.dark {
+  background-color: var(--dark-color);
+  color: #fff;
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.blue {
+  background-color: var(--att-blue-deep);
+  color: #fff;
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6,
+main .section.blue h1,
+main .section.blue h2,
+main .section.blue h3,
+main .section.blue h4,
+main .section.blue h5,
+main .section.blue h6 {
+  color: #fff;
+}
+
+main .section.dark a:any-link,
+main .section.blue a:any-link {
+  color: var(--light-color);
+}
+
+main .section.dark a.button:any-link,
+main .section.blue a.button:any-link {
+  background-color: var(--light-color);
+  color: var(--att-blue-deep);
+}
+
+main .section.dark a.button:hover,
+main .section.blue a.button:hover {
+  background-color: #fff;
+}
+
+main .section.dark a.button.secondary,
+main .section.blue a.button.secondary {
+  background-color: transparent;
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
+main .section.dark a.button.secondary:hover,
+main .section.blue a.button.secondary:hover {
+  background-color: rgb(255 255 255 / 10%);
 }
