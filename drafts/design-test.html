@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AT&T Business Design System Test</title>
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <style>
+    /* Override body display for standalone test page */
+    body { display: block !important; }
+    /* Simulate EDS button decoration */
+    p > a:only-child { display: inline-block; box-sizing: border-box; max-width: 100%; margin: 12px 0; border: 2px solid transparent; border-radius: var(--button-border-radius); padding: var(--button-padding); font-family: var(--body-font-family); font-style: normal; font-weight: 700; font-size: var(--button-font-size); line-height: var(--button-height); min-width: var(--button-min-width); text-align: center; text-decoration: none; background-color: var(--button-primary-bg); color: var(--button-primary-color); box-shadow: var(--button-primary-box-shadow); cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: var(--button-transition); }
+    p > a:only-child:hover { background-color: var(--button-primary-bg-hover); }
+    p > em > a:only-child { display: inline-block; box-sizing: border-box; max-width: 100%; margin: 12px 0; border: var(--button-secondary-border); border-radius: var(--button-border-radius); padding: var(--button-padding); font-family: var(--body-font-family); font-style: normal; font-weight: 700; font-size: var(--button-font-size); line-height: var(--button-height); min-width: var(--button-min-width); text-align: center; text-decoration: none; background-color: transparent; color: var(--button-secondary-color); cursor: pointer; transition: var(--button-transition); }
+    p > em > a:only-child:hover { background-color: var(--button-secondary-bg-hover); color: var(--button-secondary-color-hover); border-color: var(--button-secondary-bg-hover); }
+    /* Simulate EDS section decoration */
+    main > div { margin: 40px 16px; }
+    .section { margin: 0 !important; padding: 40px 0 !important; }
+    .section > div { max-width: 1200px; margin: auto; padding: 0 32px; }
+    .section-metadata { display: none; }
+  </style>
+  <script>
+    // Simple section metadata processor for testing
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.section-metadata').forEach(meta => {
+        const section = meta.parentElement;
+        const rows = meta.querySelectorAll(':scope > div');
+        rows.forEach(row => {
+          const key = row.children[0]?.textContent.trim().toLowerCase();
+          const value = row.children[1]?.textContent.trim().toLowerCase();
+          if (key === 'style') {
+            const wrapper = document.createElement('div');
+            wrapper.className = `section ${value}`;
+            const inner = document.createElement('div');
+            while (section.firstChild) {
+              if (section.firstChild !== meta) {
+                inner.appendChild(section.firstChild);
+              } else {
+                section.removeChild(section.firstChild);
+              }
+            }
+            wrapper.appendChild(inner);
+            section.parentNode.replaceChild(wrapper, section);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <main>
+    <div>
+      <h1>AT&T Business Design System</h1>
+      <p>This page validates the extracted design tokens from business.att.com.</p>
+    </div>
+    <div>
+      <h2>Typography Scale</h2>
+      <h1>Heading 1 - Give your team an edge</h1>
+      <h2>Heading 2 - Fast, reliable, and secure</h2>
+      <h3>Heading 3 - Mobile Solutions</h3>
+      <h4>Heading 4 - The AT&T Guarantee</h4>
+      <h5>Heading 5 - Smaller Heading</h5>
+      <h6>Heading 6 - Smallest Heading</h6>
+      <p>Body text - AT&T Business delivers custom solutions to help drive business forward. Get our best deals on the latest devices, wireless plans, and services your business can depend on.</p>
+      <p>A <a href="https://example.com">text link</a> example and another <a href="https://example.com">link to explore</a>.</p>
+    </div>
+    <div>
+      <h2>Button Variants</h2>
+      <p><a href="https://example.com">Primary Button</a></p>
+      <p><a href="https://example.com">Learn more</a></p>
+      <p><em><a href="https://example.com">Secondary Button</a></em></p>
+      <p><em><a href="https://example.com">See Craig's solutions</a></em></p>
+    </div>
+    <div>
+      <h2>Light Section</h2>
+      <p>This section has a light blue background matching the AT&T Business site.</p>
+      <p><a href="https://example.com">Shop now</a></p>
+      <p><em><a href="https://example.com">Learn more</a></em></p>
+      <div class="section-metadata">
+        <div><div>style</div><div>light</div></div>
+      </div>
+    </div>
+    <div>
+      <h2>Dark Section</h2>
+      <p>This section uses the dark background for contrast areas.</p>
+      <p><a href="https://example.com">Learn more</a></p>
+      <p><em><a href="https://example.com">See solutions</a></em></p>
+      <div class="section-metadata">
+        <div><div>style</div><div>dark</div></div>
+      </div>
+    </div>
+    <div>
+      <h2>Blue Section</h2>
+      <p>This section uses the AT&T deep blue background for branded areas.</p>
+      <p><a href="https://example.com">Shop deals</a></p>
+      <p><em><a href="https://example.com">Learn more</a></em></p>
+      <div class="section-metadata">
+        <div><div>style</div><div>blue</div></div>
+      </div>
+    </div>
+    <div>
+      <h2>Light Gray Section</h2>
+      <p>This section uses the light gray background for alternate content areas.</p>
+      <div class="section-metadata">
+        <div><div>style</div><div>light-gray</div></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
