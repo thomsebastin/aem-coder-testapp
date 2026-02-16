@@ -76,6 +76,20 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Moves AEM instrumentation attributes from one element to another.
+ * @param {Element} source The source element
+ * @param {Element} target The target element
+ */
+export function moveInstrumentation(source, target) {
+  [...source.attributes]
+    .filter(({ name }) => name.startsWith('data-aue-') || name.startsWith('data-richtext-'))
+    .forEach(({ name, value }) => {
+      target.setAttribute(name, value);
+      source.removeAttribute(name);
+    });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */

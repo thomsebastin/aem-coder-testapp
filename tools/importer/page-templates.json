@@ -1,0 +1,49 @@
+{
+  "templates": [
+    {
+      "name": "att-business-homepage",
+      "urls": ["https://www.business.att.com/"],
+      "description": "AT&T Business homepage with hero banners, product cards, promotional offers, value propositions, carousel, and contact section",
+      "blocks": [
+        {
+          "name": "section-dark",
+          "instances": [".hero-wrapper.theme-dark-bg-img"],
+          "section": "dark"
+        },
+        {
+          "name": "section-light-gray",
+          "instances": [".theme-neutral-bg"],
+          "section": "light-gray"
+        },
+        {
+          "name": "section-light",
+          "instances": [".theme-accent-bg"],
+          "section": "light"
+        },
+        {
+          "name": "hero",
+          "instances": [".hero.aem-GridColumn"]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".multi-tile-cards.aem-GridColumn",
+            ".flex-cards.aem-GridColumn",
+            ".generic-list-value-prop.aem-GridColumn"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".offer.aem-GridColumn",
+            ".link-farm.aem-GridColumn"
+          ]
+        },
+        {
+          "name": "carousel",
+          "instances": [".story-stack.aem-GridColumn"]
+        }
+      ]
+    }
+  ]
+}
