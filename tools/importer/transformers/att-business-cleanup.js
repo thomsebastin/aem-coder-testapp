@@ -2,99 +2,54 @@
 /* global WebImporter */
 
 /**
- * Transformer for AT&T Business website cleanup
- * Purpose: Remove navigation, footer, tracking elements, and non-content widgets
- * Applies to: www.business.att.com (all templates)
- * Tested: / (homepage)
+ * Transformer for AT&T Business site cleanup
+ * Removes non-content elements common across all AT&T Business pages
  *
- * SELECTORS EXTRACTED FROM:
- * - Captured DOM during migration workflow (cleaned.html)
- * - Page structure analysis from page migration workflow
+ * Source: https://www.business.att.com/
+ * Generated: 2026-02-26
  */
+export default function transform(hookName, element) {
+  if (hookName === 'beforeTransform') {
+    // Remove global navigation
+    const globalNav = element.querySelector('div.global-navigation');
+    if (globalNav) globalNav.remove();
 
-const TransformHook = {
-  beforeTransform: 'beforeTransform',
-  afterTransform: 'afterTransform',
-};
+    // Remove skip-to-content links
+    const skipLinks = element.querySelectorAll('a.skip-to-content-link');
+    skipLinks.forEach((el) => el.remove());
 
-export default function transform(hookName, element, payload) {
-  if (hookName === TransformHook.beforeTransform) {
-    // Remove global navigation header
-    // Found in captured DOM: <div class="global-navigation parbase aem-GridColumn">
-    WebImporter.DOMUtils.remove(element, [
-      '.global-navigation',
-    ]);
+    // Remove cookie/consent dialogs
+    const cookieBanners = element.querySelectorAll('[class*="cookie"], [class*="consent"]');
+    cookieBanners.forEach((el) => el.remove());
 
-    // Remove modal navigation overlay
-    // Found in captured DOM: <div class="modal-global-navigation">
-    WebImporter.DOMUtils.remove(element, [
-      '.modal-global-navigation',
-    ]);
+    // Remove chat widgets
+    const chatWidgets = element.querySelectorAll('[class*="chat-widget"], [class*="live-chat"]');
+    chatWidgets.forEach((el) => el.remove());
 
-    // Remove skip-to-content link
-    // Found in captured DOM: <a class="skip-to-content-link">
-    WebImporter.DOMUtils.remove(element, [
-      '.skip-to-content-link',
-    ]);
+    // Remove tracking pixels and hidden iframes
+    const trackingElements = element.querySelectorAll('iframe[width="0"], iframe[height="0"], img[width="1"][height="1"]');
+    trackingElements.forEach((el) => el.remove());
 
-    // Remove footer section (second .xfpage element contains footer)
-    // Found in captured DOM: <div class="footer-page-css-includes aem-GridColumn">
-    WebImporter.DOMUtils.remove(element, [
-      '.footer-page-css-includes',
-    ]);
+    // Remove footer section
+    const footer = element.querySelector('footer, [class*="footer"]');
+    if (footer) footer.remove();
 
-    // Remove swiper UI elements (navigation buttons, pagination, notifications)
-    // Found in captured DOM: <div class="swipeButton swiper-button-prev">
-    // Found in captured DOM: <div class="swipeButton swiper-button-next">
-    // Found in captured DOM: <div class="swiper-pagination">
-    // Found in captured DOM: <span class="swiper-notification">
-    WebImporter.DOMUtils.remove(element, [
-      '.swiper-button-prev',
-      '.swiper-button-next',
-      '.swiper-pagination',
-      '.swiper-notification',
-    ]);
+    // Remove RAI form / lead capture forms
+    const raiForms = element.querySelectorAll('div.rai-form, form[class*="eloqua"]');
+    raiForms.forEach((el) => el.remove());
 
-    // Remove search forms (desktop and mobile)
-    // Found in captured DOM: <form id="cludo-search-form">
-    // Found in captured DOM: <form id="cludo-mob-search">
-    WebImporter.DOMUtils.remove(element, [
-      '#cludo-search-form',
-      '#cludo-mob-search',
-      '.search-mobile-view',
-      '.search-tablet-view',
-    ]);
-
-    // Remove login dropdown menu
-    // Found in captured DOM: <ul class="login-menu-dropdown dropdown-menu">
-    WebImporter.DOMUtils.remove(element, [
-      '.login-menu-dropdown',
-    ]);
+    // Remove empty layout divs
+    const emptyDivs = element.querySelectorAll('div.max-width-background:empty');
+    emptyDivs.forEach((el) => el.remove());
   }
 
-  if (hookName === TransformHook.afterTransform) {
-    // Remove tracking class from links (leave element, clean class)
-    // Found in captured DOM: <a class="att-track" href="...">
-    const trackedLinks = element.querySelectorAll('.att-track');
-    trackedLinks.forEach((el) => {
-      el.classList.remove('att-track');
-    });
-
-    // Remove remaining non-content elements
-    WebImporter.DOMUtils.remove(element, [
-      'iframe',
-      'link',
-      'noscript',
-      'source',
-    ]);
-
-    // Remove data-tracking attributes
-    // Found in captured DOM: various elements with data-* tracking attributes
-    const allElements = element.querySelectorAll('*');
-    allElements.forEach((el) => {
-      el.removeAttribute('onclick');
-      el.removeAttribute('data-analytics');
-      el.removeAttribute('data-link-name');
+  if (hookName === 'afterTransform') {
+    // Clean up remaining empty elements
+    const emptySections = element.querySelectorAll('div:empty');
+    emptySections.forEach((el) => {
+      if (!el.children.length && !el.textContent.trim()) {
+        el.remove();
+      }
     });
   }
 }
